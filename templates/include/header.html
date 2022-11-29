@@ -1,0 +1,26 @@
+{% load static %}
+
+<header class="header">
+    <div class="header__logo">
+      <img src="{% static 'img/header/logo.svg' %}" alt="" />
+    </div>
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li class="header__menu-link"><a href="{% url 'index' %}">Главная</a></li>
+        <li class="header__menu-link"><a href="{% url 'liquidity' %}">Пул ликвидности</a></li>
+        {% if user.is_admin == True %}
+        <li class="header__menu-link"><a href="{% url 'faq' %}">FAQ</a></li>
+        {% else %}
+        
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="header__content">
+      {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}"><button  class="header__content-btn" id="myBtn1">{{ user.username }}</button></a>   
+      {% else %}
+      <button class="header__content-btn" id="myBtn1">Вход / </button>
+      <button class="header__content-btn" id="myBtn">Регистрация</button>
+      {% endif %}
+    </div>
+  </header>
